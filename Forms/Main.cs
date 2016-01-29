@@ -32,7 +32,6 @@ namespace ContactManager.Forms
             ConfigureAutoSave(autoSaveInMinutes);
             ConfigureAutoComplete();
             cmbState.Text = "FL";
-            //dataGridView1.AutoGenerateColumns = false;
             LoadData();
             LoadTestData();
         }
@@ -47,7 +46,11 @@ namespace ContactManager.Forms
             txtStreet.Text = "4122 e 97th ave";
             txtCity.Text = "Tampa"; 
             txtZip.Text = "33617";
-            
+            dtpDOB.Text = "09/08/1975";
+            txtBusPhone.Text = "NA";
+            txtFax.Text = "8137371719";
+            txtAHANum.Text = "123456";
+
         }
 
         private void LoadData(string filter = "")
@@ -248,7 +251,13 @@ namespace ContactManager.Forms
 
         private void BtnAddNew_Click(object sender, EventArgs e)
         {
-            
+            Contact c = LoadContactFromInput();
+            _dc.Add(c);
+            LoadData(string.Empty);
+        }
+
+        private Contact LoadContactFromInput()
+        {
             Contact c = new Contact();
             c.FirstName = txtFirstName.Text;
             c.LastName = txtLastName.Text;
@@ -256,14 +265,64 @@ namespace ContactManager.Forms
             c.Phone = txtPhone.Text;
             c.Address1 = new Address(txtStreet.Text, string.Empty, txtCity.Text, cmbState.Text, txtZip.Text);
             c.MembershipDate = Convert.ToDateTime(dtpMembership.Text);
+            c.DOB = Convert.ToDateTime(dtpDOB.Text);
+            c.BusinessPhone = txtBusPhone.Text;
+            c.Fax = txtFax.Text;
+            c.AHAMemberNumber = txtAHANum.Text;
+            return c;
 
-            _dc.Add(c);
         }
+
 
         private void monthlyAdditionsToolStripMenuItem_Click(object sender, EventArgs e)
         {
             //Pull all users for the previous month
 
+        }
+
+        private void dataGridView1_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            DataGridView dgv = sender as DataGridView;
+            if (dgv == null)
+                return;
+            if (dgv.CurrentRow.Selected)
+            {
+                //do you stuff.
+                var c = (Contact)dgv.CurrentRow.DataBoundItem;
+                BtnAddNew.Visible = false;
+                btnUpdate.Visible = true;
+
+                ClearControls(groupBox1);
+                txtFirstName.Text= c.FirstName;
+                txtLastName.Text = c.LastName;
+                txtEmail.Text = c.EmailAddress;
+                txtPhone.Text = c.Phone;
+                txtStreet.Text = c.Address1.Street1;
+                txtCity.Text = c.Address1.City;
+                cmbState.Text = c.Address1.State;
+                txtZip.Text = c.Address1.Zip;
+                dtpMembership.Text = c.MembershipDate.ToShortDateString();
+                dtpDOB.Text = c.DOB.ToShortDateString();
+                txtBusPhone.Text = c.BusinessPhone;
+                txtFax.Text = c.Fax;
+                txtAHANum.Text = c.AHAMemberNumber;
+                lblId.Text = c.Id.ToString();
+                lblAdded.Text = c.EntryAdded.ToShortDateString();
+            }
+
+            
+        }
+
+        private void btnUpdate_Click(object sender, EventArgs e)
+        {
+            BtnAddNew.Visible = true;
+            btnUpdate.Visible = false;
+
+            Contact c = LoadContactFromInput();
+            c.Id = Convert.ToInt32(lblId.Text);
+            c.EntryAdded = Convert.ToDateTime(lblAdded.Text);
+            _dc.UpdateEntry(c);
+            LoadData(string.Empty);
         }
     }
 }
