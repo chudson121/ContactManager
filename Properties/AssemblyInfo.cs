@@ -8,7 +8,7 @@ using System.Runtime.InteropServices;
 [assembly: AssemblyTitle("ContactManger")]
 [assembly: AssemblyDescription("Used to hold Contacts")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("Hudson and Hudson")]
+[assembly: AssemblyCompany("Chris Hudson LLC")]
 [assembly: AssemblyProduct("ContactManager.Properties")]
 [assembly: AssemblyCopyright("2016")]
 [assembly: AssemblyTrademark("")]
@@ -31,3 +31,5 @@ using System.Runtime.InteropServices;
 //
 [assembly: AssemblyVersion("1.0.0.*")]
 [assembly: AssemblyFileVersion("1.0.0.0")]
+// Log4net config file
+[assembly: log4net.Config.XmlConfigurator(ConfigFile = "Configs\\logging.config", Watch = true)]

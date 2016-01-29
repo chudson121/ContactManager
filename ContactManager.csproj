@@ -61,6 +61,9 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />
+    <Content Include="Configs\logging.config">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <None Include="packages.config" />
     <None Include="README.md" />
   </ItemGroup>
@@ -95,7 +98,6 @@
   <ItemGroup>
     <Folder Include=".git\" />
     <Folder Include="App_Data\" />
-    <Folder Include="Configs\" />
     <Folder Include="Extensions\" />
   </ItemGroup>
   <ItemGroup>

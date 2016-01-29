@@ -1,4 +1,5 @@
 ﻿using ContactManager.Controller;
+using ContactManager.Model;
 using log4net;
 using System;
 using System.Collections.Generic;
@@ -20,18 +21,47 @@ namespace ContactManager.Forms
         private readonly ContactController _dc;
         private readonly ILog _log;
         static readonly Timer SaveTimer = new Timer();
+        private string _filterText;
 
         public Main(ILog log, int autoSaveInMinutes)
         {
             _log = log; //program level log file
+            _dc = new ContactController(_log, Program.SavePath);
             InitializeComponent();
             ConfigureSysTray();
             ConfigureAutoSave(autoSaveInMinutes);
             ConfigureAutoComplete();
             cmbState.Text = "FL";
             //dataGridView1.AutoGenerateColumns = false;
-            //LoadData();
+            LoadData();
+            LoadTestData();
         }
+
+        private void LoadTestData()
+        {
+
+            txtFirstName.Text = "chris";
+            txtLastName.Text = "hudson";
+            txtEmail.Text = "chudson121@hotmail.com";
+            txtPhone.Text = "8133804342";
+            txtStreet.Text = "4122 e 97th ave";
+            txtCity.Text = "Tampa"; 
+            txtZip.Text = "33617";
+            
+        }
+
+        private void LoadData(string filter = "")
+        {
+            //dataGridView1.DataSource = null;
+            //dataGridView1.Refresh();
+            //dataGridView1.AutoGenerateColumns = true;
+            //dataGridView1.Rows.Clear();
+            //dataGridView1.Columns.Clear();
+            dataGridView1.DataSource = _dc.GetAll(filter);
+            //AddColumns();
+            //dataGridView1.Refresh();
+        }
+
 
 
         private void ConfigureAutoComplete()
@@ -57,12 +87,12 @@ namespace ContactManager.Forms
         private void TimerEventProcessor(Object myObject, EventArgs myEventArgs)
         {
 
-            if (string.IsNullOrEmpty(txtEntry.Text))
+            if (string.IsNullOrEmpty(txtFilter.Text))
                 return;
 
             _log.Info("AutoSaveing Entry");
             //Save current entry
-            //SaveEntry(txtEntry.Text, txtEventName.Text);
+            //SaveEntry(txtFilter.Text, txtEventName.Text);
         }
 
         private void SaveEntry()
@@ -78,12 +108,42 @@ namespace ContactManager.Forms
 
         private void ClearOldText()
         {
-            txtEntry.Text = "";
+            txtFilter.Text = "";
+            ClearControls(groupBox1);
+            //clear all other contact info boxes
+
             //reload form
-            //LoadData(_filterText);
+            LoadData(_filterText);
         }
 
-          private void ConfigureSysTray()
+        private void ClearControls(Control control)
+        {
+            foreach (Control c in control.Controls)
+            {
+                if (c is TextBox)
+                {
+                    ((TextBox)c).Clear();
+                }
+                
+                if (c is CheckBox)
+                {
+
+                    ((CheckBox)c).Checked = false;
+                }
+
+                if (c is RadioButton)
+                {
+                    ((RadioButton)c).Checked = false;
+                }
+
+                if (c.HasChildren)
+                {
+                    ClearControls(c);
+                }
+            }
+        }
+
+        private void ConfigureSysTray()
         {
             // Create a simple tray menu with only one item.
             _trayMenu = new ContextMenu();
@@ -125,7 +185,7 @@ namespace ContactManager.Forms
             Activate();
             BringToFront();
             Focus();
-            txtEntry.Focus();
+            txtFilter.Focus();
         }
         
         private void HideForm()
@@ -140,7 +200,7 @@ namespace ContactManager.Forms
         
         private void exitToolStripMenuItem_Click(object sender, EventArgs e)
         {
-           // SaveEntry(txtEntry.Text, txtEventName.Text);
+           // SaveEntry(txtFilter.Text, txtEventName.Text);
             Application.Exit();
         }
 
@@ -177,16 +237,33 @@ namespace ContactManager.Forms
         }
 
 
-        private void LoadData(string filter = "")
+   
+
+        private void btnFilter_Click(object sender, EventArgs e)
         {
-            //dataGridView1.DataSource = null;
-            //dataGridView1.Refresh();
-            dataGridView1.AutoGenerateColumns = false;
-            dataGridView1.Rows.Clear();
-            dataGridView1.Columns.Clear();
-            //dataGridView1.DataSource = _dc.GetDiaryEntries(filter);
-            //AddColumns();
-            //dataGridView1.Refresh();
+            _filterText = txtFilter.Text;
+
+            LoadData(_filterText);
+        }
+
+        private void BtnAddNew_Click(object sender, EventArgs e)
+        {
+            
+            Contact c = new Contact();
+            c.FirstName = txtFirstName.Text;
+            c.LastName = txtLastName.Text;
+            c.EmailAddress = txtEmail.Text;
+            c.Phone = txtPhone.Text;
+            c.Address1 = new Address(txtStreet.Text, string.Empty, txtCity.Text, cmbState.Text, txtZip.Text);
+            c.MembershipDate = Convert.ToDateTime(dtpMembership.Text);
+
+            _dc.Add(c);
+        }
+
+        private void monthlyAdditionsToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            //Pull all users for the previous month
+
         }
     }
 }
