@@ -119,12 +119,14 @@
             // dataGridView1
             // 
             this.dataGridView1.AllowUserToOrderColumns = true;
+            this.dataGridView1.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView1.Location = new System.Drawing.Point(12, 89);
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.Size = new System.Drawing.Size(593, 411);
-            this.dataGridView1.TabIndex = 3;
+            this.dataGridView1.TabIndex = 99;
             this.dataGridView1.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellClick);
+            this.dataGridView1.KeyDown += new System.Windows.Forms.KeyEventHandler(this.dataGridView1_KeyDown);
             // 
             // groupBox1
             // 
@@ -206,7 +208,7 @@
             this.BtnAddNew.Location = new System.Drawing.Point(218, 458);
             this.BtnAddNew.Name = "BtnAddNew";
             this.BtnAddNew.Size = new System.Drawing.Size(37, 23);
-            this.BtnAddNew.TabIndex = 15;
+            this.BtnAddNew.TabIndex = 27;
             this.BtnAddNew.Text = "Add";
             this.BtnAddNew.UseVisualStyleBackColor = true;
             this.BtnAddNew.Click += new System.EventHandler(this.BtnAddNew_Click);
@@ -469,6 +471,7 @@
             this.btnUpdate.TabIndex = 27;
             this.btnUpdate.Text = "Update";
             this.btnUpdate.UseVisualStyleBackColor = true;
+            this.btnUpdate.Visible = false;
             this.btnUpdate.Click += new System.EventHandler(this.btnUpdate_Click);
             // 
             // lblId
@@ -476,18 +479,16 @@
             this.lblId.AutoSize = true;
             this.lblId.Location = new System.Drawing.Point(25, 442);
             this.lblId.Name = "lblId";
-            this.lblId.Size = new System.Drawing.Size(18, 13);
+            this.lblId.Size = new System.Drawing.Size(0, 13);
             this.lblId.TabIndex = 28;
-            this.lblId.Text = "ID";
             // 
             // lblAdded
             // 
             this.lblAdded.AutoSize = true;
             this.lblAdded.Location = new System.Drawing.Point(28, 459);
             this.lblAdded.Name = "lblAdded";
-            this.lblAdded.Size = new System.Drawing.Size(41, 13);
+            this.lblAdded.Size = new System.Drawing.Size(0, 13);
             this.lblAdded.TabIndex = 29;
-            this.lblAdded.Text = "label14";
             // 
             // Main
             // 

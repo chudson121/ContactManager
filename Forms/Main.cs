@@ -33,7 +33,7 @@ namespace ContactManager.Forms
             ConfigureAutoComplete();
             cmbState.Text = "FL";
             LoadData();
-            LoadTestData();
+           // LoadTestData();
         }
 
         private void LoadTestData()
@@ -61,6 +61,16 @@ namespace ContactManager.Forms
             //dataGridView1.Rows.Clear();
             //dataGridView1.Columns.Clear();
             dataGridView1.DataSource = _dc.GetAll(filter);
+            dataGridView1.Columns[0].Visible = false; //ID
+            dataGridView1.Columns[1].Visible = false; //Entry Added
+            dataGridView1.Columns[2].Visible = false; //Entry Updated
+            dataGridView1.Columns[7].Visible = false; //Address
+
+            dataGridView1.Columns[9].Visible = false; //DOB
+            dataGridView1.Columns[10].Visible = false; //BusinessPhone
+            dataGridView1.Columns[11].Visible = false; //Fax
+            dataGridView1.Columns[12].Visible = false; //AHAMemberNumber
+
             //AddColumns();
             //dataGridView1.Refresh();
         }
@@ -287,42 +297,60 @@ namespace ContactManager.Forms
                 return;
             if (dgv.CurrentRow.Selected)
             {
-                //do you stuff.
-                var c = (Contact)dgv.CurrentRow.DataBoundItem;
-                BtnAddNew.Visible = false;
-                btnUpdate.Visible = true;
-
-                ClearControls(groupBox1);
-                txtFirstName.Text= c.FirstName;
-                txtLastName.Text = c.LastName;
-                txtEmail.Text = c.EmailAddress;
-                txtPhone.Text = c.Phone;
-                txtStreet.Text = c.Address1.Street1;
-                txtCity.Text = c.Address1.City;
-                cmbState.Text = c.Address1.State;
-                txtZip.Text = c.Address1.Zip;
-                dtpMembership.Text = c.MembershipDate.ToShortDateString();
-                dtpDOB.Text = c.DOB.ToShortDateString();
-                txtBusPhone.Text = c.BusinessPhone;
-                txtFax.Text = c.Fax;
-                txtAHANum.Text = c.AHAMemberNumber;
-                lblId.Text = c.Id.ToString();
-                lblAdded.Text = c.EntryAdded.ToShortDateString();
+                LoadForUpdate();
             }
 
             
         }
 
+        private void LoadForUpdate()
+        {
+            //do you stuff.
+            var c = (Contact)dataGridView1.CurrentRow.DataBoundItem;
+            groupBox1.Text = "Update Contact";
+            BtnAddNew.Visible = false;
+            btnUpdate.Visible = true;
+
+            ClearControls(groupBox1);
+            txtFirstName.Text = c.FirstName;
+            txtLastName.Text = c.LastName;
+            txtEmail.Text = c.EmailAddress;
+            txtPhone.Text = c.Phone;
+            txtStreet.Text = c.Address1.Street1;
+            txtCity.Text = c.Address1.City;
+            cmbState.Text = c.Address1.State;
+            txtZip.Text = c.Address1.Zip;
+            dtpMembership.Text = c.MembershipDate.ToShortDateString();
+            dtpDOB.Text = c.DOB.ToShortDateString();
+            txtBusPhone.Text = c.BusinessPhone;
+            txtFax.Text = c.Fax;
+            txtAHANum.Text = c.AHAMemberNumber;
+            lblId.Text = c.Id.ToString();
+            lblAdded.Text = c.EntryAdded.ToShortDateString();
+        }
+
+
         private void btnUpdate_Click(object sender, EventArgs e)
         {
             BtnAddNew.Visible = true;
             btnUpdate.Visible = false;
-
+            groupBox1.Text = "New Contact";
             Contact c = LoadContactFromInput();
             c.Id = Convert.ToInt32(lblId.Text);
             c.EntryAdded = Convert.ToDateTime(lblAdded.Text);
             _dc.UpdateEntry(c);
             LoadData(string.Empty);
+        }
+
+        private void dataGridView1_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyValue == (Char)Keys.Enter)
+            {
+                this.dataGridView1.CurrentRow.Selected = true;
+                LoadForUpdate();
+                e.Handled = true;
+            }
+
         }
     }
 }
