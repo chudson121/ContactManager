@@ -70,6 +70,8 @@
             this.btnUpdate = new System.Windows.Forms.Button();
             this.lblId = new System.Windows.Forms.Label();
             this.lblAdded = new System.Windows.Forms.Label();
+            this.label14 = new System.Windows.Forms.Label();
+            this.chkActive = new System.Windows.Forms.CheckBox();
             this.menuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.groupBox1.SuspendLayout();
@@ -130,6 +132,8 @@
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.chkActive);
+            this.groupBox1.Controls.Add(this.label14);
             this.groupBox1.Controls.Add(this.lblAdded);
             this.groupBox1.Controls.Add(this.lblId);
             this.groupBox1.Controls.Add(this.btnUpdate);
@@ -490,6 +494,26 @@
             this.lblAdded.Size = new System.Drawing.Size(0, 13);
             this.lblAdded.TabIndex = 29;
             // 
+            // label14
+            // 
+            this.label14.AutoSize = true;
+            this.label14.Location = new System.Drawing.Point(69, 441);
+            this.label14.Name = "label14";
+            this.label14.Size = new System.Drawing.Size(37, 13);
+            this.label14.TabIndex = 30;
+            this.label14.Text = "Active";
+            // 
+            // chkActive
+            // 
+            this.chkActive.AutoSize = true;
+            this.chkActive.Checked = true;
+            this.chkActive.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.chkActive.Location = new System.Drawing.Point(117, 442);
+            this.chkActive.Name = "chkActive";
+            this.chkActive.Size = new System.Drawing.Size(15, 14);
+            this.chkActive.TabIndex = 31;
+            this.chkActive.UseVisualStyleBackColor = true;
+            // 
             // Main
             // 
             this.AcceptButton = this.BtnAddNew;
@@ -557,5 +581,7 @@
         private System.Windows.Forms.Button btnUpdate;
         private System.Windows.Forms.Label lblId;
         private System.Windows.Forms.Label lblAdded;
+        private System.Windows.Forms.CheckBox chkActive;
+        private System.Windows.Forms.Label label14;
     }
 }

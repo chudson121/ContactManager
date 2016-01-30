@@ -51,6 +51,7 @@ namespace ContactManager.Forms
             txtFax.Text = "8137371719";
             txtAHANum.Text = "123456";
 
+
         }
 
         private void LoadData(string filter = "")
@@ -279,6 +280,7 @@ namespace ContactManager.Forms
             c.BusinessPhone = txtBusPhone.Text;
             c.Fax = txtFax.Text;
             c.AHAMemberNumber = txtAHANum.Text;
+            c.IsActive = chkActive.Checked;
             return c;
 
         }
@@ -327,6 +329,7 @@ namespace ContactManager.Forms
             txtAHANum.Text = c.AHAMemberNumber;
             lblId.Text = c.Id.ToString();
             lblAdded.Text = c.EntryAdded.ToShortDateString();
+            chkActive.Checked = c.IsActive;
         }
 
 

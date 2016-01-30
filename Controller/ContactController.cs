@@ -22,6 +22,7 @@ namespace ContactManager.Controller
         private static XDocument _xmlDoc;
 
         public string EntryFileFullName { get; set; }
+
         public IEnumerable<string> EntryEvents { get; private set; }
 
         public ContactController(ILog log, string pathToEntries, string sortDir = "desc")
@@ -53,7 +54,7 @@ namespace ContactManager.Controller
                               new XElement("LastName", contact.LastName),
                               new XElement("EmailAddress", contact.EmailAddress),
                               new XElement("Phone", contact.Phone),
-                              new XElement("Address1", 
+                              new XElement("Address1",
                                             new XElement("Street1", contact.Address1.Street1),
                                             new XElement("Street2", contact.Address1.Street2),
                                             new XElement("City", contact.Address1.City),
@@ -65,11 +66,14 @@ namespace ContactManager.Controller
                             new XElement("Fax", contact.Fax),
                             new XElement("AHAMemberNumber", contact.AHAMemberNumber),
                             new XElement("EntryAdded", DateTime.UtcNow),
-                            new XElement("EntryUpdated", DateTime.UtcNow)
+                            new XElement("EntryUpdated", DateTime.UtcNow),
+                            new XElement("IsActive", contact.IsActive)
+
                             
+
                         ));
 
-            
+
             _xmlDoc.Save(EntryFileFullName);
         }
 
@@ -102,11 +106,11 @@ namespace ContactManager.Controller
             _log.Info(string.Format("Loading Entries - {0}", _xmlDoc.Descendants(nodeName).Count()));
 
             IEnumerable<Contact> entries;
-                    
+
             //TODO: Add back address
-                        entries = from e in _xmlDoc.Descendants(nodeName)
-                           let addy = e.Element("Address1")
-                                  select (new Contact(e));
+            entries = from e in _xmlDoc.Descendants(nodeName)
+                      let addy = e.Element("Address1")
+                      select (new Contact(e));
 
 
 
@@ -115,22 +119,20 @@ namespace ContactManager.Controller
                 _log.Info(string.Format("Loading Entries with filter - {0}", filter));
                 entries = entries.Where(p => p.LastName.StartsWith(filter));
             }
-                
+
 
 
             return entries.ToList();
         }
-
-
-
+        
         public void UpdateEntry(Contact contact)
         {
             string nodeName = "Contact";
             //find original
             var xmlElement = (from item in _xmlDoc.Descendants(nodeName)
-                        let xElement = item.Element("Id")
-                        where xElement != null && xElement.Value == contact.Id.ToString()
-                        select item).Single();
+                              let xElement = item.Element("Id")
+                              where xElement != null && xElement.Value == contact.Id.ToString()
+                              select item).Single();
             var oldContact = new Contact(xmlElement);
 
             xmlElement.ReplaceWith(
@@ -152,46 +154,15 @@ namespace ContactManager.Controller
                           new XElement("Fax", contact.Fax),
                           new XElement("AHAMemberNumber", contact.AHAMemberNumber),
                           new XElement("EntryAdded", contact.EntryAdded),
-                          new XElement("EntryUpdated", DateTime.UtcNow)
+                          new XElement("EntryUpdated", DateTime.UtcNow),
+                        new XElement("IsActive", contact.IsActive)
 
                       ));
-
-
-
-
-
-            //foreach (XElement itemElement in oldContact)
-            //{
-            //    //itemElement.SetElementValue("EntryEvent", entry.EntryEvent);
-            //    //itemElement.SetElementValue("EntryTxt", entry.EntryTxt);
-            //    //itemElement.SetElementValue("EntryDt", entry.EntryDt);
-            //    //itemElement.SetElementValue("UserName", entry.UserName);
-
-            //    itemElement.SetElementValue("FirstName", contact.FirstName);
-            //    itemElement.SetElementValue("LastName", contact.LastName);
-            //    itemElement.SetElementValue("EmailAddress", contact.EmailAddress);
-            //    itemElement.SetElementValue("Phone", contact.Phone);
-            //itemElement.SetElementValue("Address1",
-            //itemElement.SetElementValue("Street1", contact.Address1.Street1),
-            //itemElement.SetElementValue("Street2", contact.Address1.Street2),
-            //itemElement.SetElementValue("City", contact.Address1.City),
-            //itemElement.SetElementValue("State", contact.Address1.State),
-            //itemElement.SetElementValue("Zip", contact.Address1.Zip)
-            //),
-            //itemElement.SetElementValue("DOB", contact.DOB);
-            //    itemElement.SetElementValue("BusinessPhone", contact.BusinessPhone);
-            //    itemElement.SetElementValue("Fax", contact.Fax);
-            //    itemElement.SetElementValue("AHAMemberNumber", contact.AHAMemberNumber);
-            //    itemElement.SetElementValue("EntryUpdated", DateTime.UtcNow);
-                
-            //}
-
 
             //update with this one.
             _xmlDoc.Save(EntryFileFullName);
         }
-
-   
+        
         public void ArchiveFile()
         {
             string datepart = String.Format("{0:yyyy-MM-dd_hh-mm-ss}", DateTime.Now.ToUniversalTime());
@@ -275,7 +246,7 @@ namespace ContactManager.Controller
             new XDocument(new XElement("Contacts")).Save(filePath);
         }
 
-   
+
         private static string GetUser()
         {
             var windowsIdentity = WindowsIdentity.GetCurrent();

@@ -26,6 +26,8 @@ namespace ContactManager.Model
         public string Fax { get; set; }
         public string AHAMemberNumber { get; set; }
 
+        public bool IsActive { get; set; }
+
         public Contact() { }
         public Contact(System.Xml.Linq.XElement e)
         {
@@ -43,7 +45,7 @@ namespace ContactManager.Model
             AHAMemberNumber = e.Element("AHAMemberNumber").Value;
             EntryAdded = Convert.ToDateTime(e.Element("EntryAdded").Value);
             EntryUpdated = Convert.ToDateTime(e.Element("EntryUpdated").Value);
-
+            IsActive = Convert.ToBoolean(e.Element("IsActive").Value);
 
 
         }
