@@ -323,6 +323,7 @@ namespace ContactManager.Forms
             cmbState.Text = c.Address1.State;
             txtZip.Text = c.Address1.Zip;
             dtpMembership.Text = c.MembershipDate.ToShortDateString();
+
             dtpDOB.Text = c.DOB.ToShortDateString();
             txtBusPhone.Text = c.BusinessPhone;
             txtFax.Text = c.Fax;
