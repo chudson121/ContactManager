@@ -38,6 +38,19 @@
             this.timer1 = new System.Windows.Forms.Timer(this.components);
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.chkActive = new System.Windows.Forms.CheckBox();
+            this.label14 = new System.Windows.Forms.Label();
+            this.lblAdded = new System.Windows.Forms.Label();
+            this.lblId = new System.Windows.Forms.Label();
+            this.btnUpdate = new System.Windows.Forms.Button();
+            this.txtAHANum = new System.Windows.Forms.TextBox();
+            this.label13 = new System.Windows.Forms.Label();
+            this.dtpDOB = new System.Windows.Forms.DateTimePicker();
+            this.label12 = new System.Windows.Forms.Label();
+            this.txtFax = new System.Windows.Forms.TextBox();
+            this.label11 = new System.Windows.Forms.Label();
+            this.txtBusPhone = new System.Windows.Forms.TextBox();
+            this.label10 = new System.Windows.Forms.Label();
             this.dtpMembership = new System.Windows.Forms.DateTimePicker();
             this.label9 = new System.Windows.Forms.Label();
             this.txtCity = new System.Windows.Forms.TextBox();
@@ -59,19 +72,6 @@
             this.label1 = new System.Windows.Forms.Label();
             this.btnFilter = new System.Windows.Forms.Button();
             this.txtFilter = new System.Windows.Forms.TextBox();
-            this.txtBusPhone = new System.Windows.Forms.TextBox();
-            this.label10 = new System.Windows.Forms.Label();
-            this.txtFax = new System.Windows.Forms.TextBox();
-            this.label11 = new System.Windows.Forms.Label();
-            this.label12 = new System.Windows.Forms.Label();
-            this.dtpDOB = new System.Windows.Forms.DateTimePicker();
-            this.label13 = new System.Windows.Forms.Label();
-            this.txtAHANum = new System.Windows.Forms.TextBox();
-            this.btnUpdate = new System.Windows.Forms.Button();
-            this.lblId = new System.Windows.Forms.Label();
-            this.lblAdded = new System.Windows.Forms.Label();
-            this.label14 = new System.Windows.Forms.Label();
-            this.chkActive = new System.Windows.Forms.CheckBox();
             this.menuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.groupBox1.SuspendLayout();
@@ -170,6 +170,121 @@
             this.groupBox1.TabIndex = 4;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "New Contact";
+            // 
+            // chkActive
+            // 
+            this.chkActive.AutoSize = true;
+            this.chkActive.Checked = true;
+            this.chkActive.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.chkActive.Location = new System.Drawing.Point(117, 442);
+            this.chkActive.Name = "chkActive";
+            this.chkActive.Size = new System.Drawing.Size(15, 14);
+            this.chkActive.TabIndex = 31;
+            this.chkActive.UseVisualStyleBackColor = true;
+            // 
+            // label14
+            // 
+            this.label14.AutoSize = true;
+            this.label14.Location = new System.Drawing.Point(69, 441);
+            this.label14.Name = "label14";
+            this.label14.Size = new System.Drawing.Size(37, 13);
+            this.label14.TabIndex = 30;
+            this.label14.Text = "Active";
+            // 
+            // lblAdded
+            // 
+            this.lblAdded.AutoSize = true;
+            this.lblAdded.Location = new System.Drawing.Point(28, 459);
+            this.lblAdded.Name = "lblAdded";
+            this.lblAdded.Size = new System.Drawing.Size(0, 13);
+            this.lblAdded.TabIndex = 29;
+            // 
+            // lblId
+            // 
+            this.lblId.AutoSize = true;
+            this.lblId.Location = new System.Drawing.Point(25, 442);
+            this.lblId.Name = "lblId";
+            this.lblId.Size = new System.Drawing.Size(0, 13);
+            this.lblId.TabIndex = 28;
+            // 
+            // btnUpdate
+            // 
+            this.btnUpdate.Location = new System.Drawing.Point(155, 458);
+            this.btnUpdate.Name = "btnUpdate";
+            this.btnUpdate.Size = new System.Drawing.Size(57, 23);
+            this.btnUpdate.TabIndex = 27;
+            this.btnUpdate.Text = "Update";
+            this.btnUpdate.UseVisualStyleBackColor = true;
+            this.btnUpdate.Visible = false;
+            this.btnUpdate.Click += new System.EventHandler(this.btnUpdate_Click);
+            // 
+            // txtAHANum
+            // 
+            this.txtAHANum.Location = new System.Drawing.Point(114, 383);
+            this.txtAHANum.Name = "txtAHANum";
+            this.txtAHANum.Size = new System.Drawing.Size(138, 20);
+            this.txtAHANum.TabIndex = 24;
+            // 
+            // label13
+            // 
+            this.label13.AutoSize = true;
+            this.label13.Location = new System.Drawing.Point(17, 386);
+            this.label13.Name = "label13";
+            this.label13.Size = new System.Drawing.Size(95, 13);
+            this.label13.TabIndex = 26;
+            this.label13.Text = "AHA Member Num";
+            // 
+            // dtpDOB
+            // 
+            this.dtpDOB.Format = System.Windows.Forms.DateTimePickerFormat.Short;
+            this.dtpDOB.Location = new System.Drawing.Point(116, 331);
+            this.dtpDOB.MaxDate = new System.DateTime(2142, 12, 31, 0, 0, 0, 0);
+            this.dtpDOB.MinDate = new System.DateTime(1900, 1, 1, 0, 0, 0, 0);
+            this.dtpDOB.Name = "dtpDOB";
+            this.dtpDOB.Size = new System.Drawing.Size(137, 20);
+            this.dtpDOB.TabIndex = 22;
+            this.dtpDOB.Value = new System.DateTime(1900, 1, 1, 0, 0, 0, 0);
+            // 
+            // label12
+            // 
+            this.label12.AutoSize = true;
+            this.label12.Location = new System.Drawing.Point(81, 337);
+            this.label12.Name = "label12";
+            this.label12.Size = new System.Drawing.Size(30, 13);
+            this.label12.TabIndex = 24;
+            this.label12.Text = "DOB";
+            // 
+            // txtFax
+            // 
+            this.txtFax.Location = new System.Drawing.Point(117, 292);
+            this.txtFax.Name = "txtFax";
+            this.txtFax.Size = new System.Drawing.Size(138, 20);
+            this.txtFax.TabIndex = 20;
+            // 
+            // label11
+            // 
+            this.label11.AutoSize = true;
+            this.label11.Location = new System.Drawing.Point(86, 295);
+            this.label11.Name = "label11";
+            this.label11.Size = new System.Drawing.Size(24, 13);
+            this.label11.TabIndex = 22;
+            this.label11.Text = "Fax";
+            // 
+            // txtBusPhone
+            // 
+            this.txtBusPhone.Location = new System.Drawing.Point(117, 266);
+            this.txtBusPhone.Name = "txtBusPhone";
+            this.txtBusPhone.Size = new System.Drawing.Size(138, 20);
+            this.txtBusPhone.TabIndex = 18;
+            // 
+            // label10
+            // 
+            this.label10.AutoSize = true;
+            this.label10.Location = new System.Drawing.Point(30, 269);
+            this.label10.Name = "label10";
+            this.label10.Size = new System.Drawing.Size(83, 13);
+            this.label10.TabIndex = 20;
+            this.label10.Text = "Business Phone";
             // 
             // dtpMembership
             // 
@@ -398,121 +513,6 @@
             this.txtFilter.Name = "txtFilter";
             this.txtFilter.Size = new System.Drawing.Size(146, 20);
             this.txtFilter.TabIndex = 9;
-            // 
-            // txtBusPhone
-            // 
-            this.txtBusPhone.Location = new System.Drawing.Point(117, 266);
-            this.txtBusPhone.Name = "txtBusPhone";
-            this.txtBusPhone.Size = new System.Drawing.Size(138, 20);
-            this.txtBusPhone.TabIndex = 18;
-            // 
-            // label10
-            // 
-            this.label10.AutoSize = true;
-            this.label10.Location = new System.Drawing.Point(30, 269);
-            this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(83, 13);
-            this.label10.TabIndex = 20;
-            this.label10.Text = "Business Phone";
-            // 
-            // txtFax
-            // 
-            this.txtFax.Location = new System.Drawing.Point(117, 292);
-            this.txtFax.Name = "txtFax";
-            this.txtFax.Size = new System.Drawing.Size(138, 20);
-            this.txtFax.TabIndex = 20;
-            // 
-            // label11
-            // 
-            this.label11.AutoSize = true;
-            this.label11.Location = new System.Drawing.Point(86, 295);
-            this.label11.Name = "label11";
-            this.label11.Size = new System.Drawing.Size(24, 13);
-            this.label11.TabIndex = 22;
-            this.label11.Text = "Fax";
-            // 
-            // label12
-            // 
-            this.label12.AutoSize = true;
-            this.label12.Location = new System.Drawing.Point(81, 337);
-            this.label12.Name = "label12";
-            this.label12.Size = new System.Drawing.Size(30, 13);
-            this.label12.TabIndex = 24;
-            this.label12.Text = "DOB";
-            // 
-            // dtpDOB
-            // 
-            this.dtpDOB.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.dtpDOB.Location = new System.Drawing.Point(116, 331);
-            this.dtpDOB.MaxDate = new System.DateTime(2142, 12, 31, 0, 0, 0, 0);
-            this.dtpDOB.MinDate = new System.DateTime(1950, 1, 1, 0, 0, 0, 0);
-            this.dtpDOB.Name = "dtpDOB";
-            this.dtpDOB.Size = new System.Drawing.Size(137, 20);
-            this.dtpDOB.TabIndex = 22;
-            this.dtpDOB.Value = new System.DateTime(2016, 1, 29, 14, 12, 39, 0);
-            // 
-            // label13
-            // 
-            this.label13.AutoSize = true;
-            this.label13.Location = new System.Drawing.Point(17, 386);
-            this.label13.Name = "label13";
-            this.label13.Size = new System.Drawing.Size(95, 13);
-            this.label13.TabIndex = 26;
-            this.label13.Text = "AHA Member Num";
-            // 
-            // txtAHANum
-            // 
-            this.txtAHANum.Location = new System.Drawing.Point(114, 383);
-            this.txtAHANum.Name = "txtAHANum";
-            this.txtAHANum.Size = new System.Drawing.Size(138, 20);
-            this.txtAHANum.TabIndex = 24;
-            // 
-            // btnUpdate
-            // 
-            this.btnUpdate.Location = new System.Drawing.Point(155, 458);
-            this.btnUpdate.Name = "btnUpdate";
-            this.btnUpdate.Size = new System.Drawing.Size(57, 23);
-            this.btnUpdate.TabIndex = 27;
-            this.btnUpdate.Text = "Update";
-            this.btnUpdate.UseVisualStyleBackColor = true;
-            this.btnUpdate.Visible = false;
-            this.btnUpdate.Click += new System.EventHandler(this.btnUpdate_Click);
-            // 
-            // lblId
-            // 
-            this.lblId.AutoSize = true;
-            this.lblId.Location = new System.Drawing.Point(25, 442);
-            this.lblId.Name = "lblId";
-            this.lblId.Size = new System.Drawing.Size(0, 13);
-            this.lblId.TabIndex = 28;
-            // 
-            // lblAdded
-            // 
-            this.lblAdded.AutoSize = true;
-            this.lblAdded.Location = new System.Drawing.Point(28, 459);
-            this.lblAdded.Name = "lblAdded";
-            this.lblAdded.Size = new System.Drawing.Size(0, 13);
-            this.lblAdded.TabIndex = 29;
-            // 
-            // label14
-            // 
-            this.label14.AutoSize = true;
-            this.label14.Location = new System.Drawing.Point(69, 441);
-            this.label14.Name = "label14";
-            this.label14.Size = new System.Drawing.Size(37, 13);
-            this.label14.TabIndex = 30;
-            this.label14.Text = "Active";
-            // 
-            // chkActive
-            // 
-            this.chkActive.AutoSize = true;
-            this.chkActive.Checked = true;
-            this.chkActive.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.chkActive.Location = new System.Drawing.Point(117, 442);
-            this.chkActive.Name = "chkActive";
-            this.chkActive.Size = new System.Drawing.Size(15, 14);
-            this.chkActive.TabIndex = 31;
-            this.chkActive.UseVisualStyleBackColor = true;
             // 
             // Main
             // 

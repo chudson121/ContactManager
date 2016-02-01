@@ -155,6 +155,7 @@ namespace ContactManager.Forms
                     ClearControls(c);
                 }
             }
+            cmbState.Text = "FL";
         }
 
         private void ConfigureSysTray()
@@ -264,6 +265,7 @@ namespace ContactManager.Forms
         {
             Contact c = LoadContactFromInput();
             _dc.Add(c);
+            ClearControls(groupBox1);
             LoadData(string.Empty);
         }
 
@@ -343,6 +345,7 @@ namespace ContactManager.Forms
             c.Id = Convert.ToInt32(lblId.Text);
             c.EntryAdded = Convert.ToDateTime(lblAdded.Text);
             _dc.UpdateEntry(c);
+            ClearControls(groupBox1); 
             LoadData(string.Empty);
         }
 
